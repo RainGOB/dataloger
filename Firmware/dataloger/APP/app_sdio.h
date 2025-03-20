@@ -3,6 +3,7 @@
 
 #include "main.h"
 
+void Fatfs_init(void);
 int FATFS_Load(void);
 int FATFS_ReadPara(void);
 

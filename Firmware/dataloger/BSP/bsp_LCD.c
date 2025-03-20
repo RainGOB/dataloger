@@ -357,12 +357,16 @@ void lcd_fill(uint16_t xs, uint16_t ys, uint16_t xe, uint16_t ye, uint16_t color
 //«Â∆¡
 void lcd_clear(uint16_t color)
 {
-#if USE_DMA2D
-    dma2d_transfer_data_r2m((uint32_t *)LAYER_FB_ADDR, LCD_WIDTH, LCD_HEIGHT, 0, color);
-#else
-	LCD_Address_Set(0,0,LCD_WIDTH-1,LCD_HEIGHT-1);
-    LCD_WR_DATA(color);
-#endif /* USE_DMA2D_EN */
+	uint16_t i,j; 
+	
+	LCD_Address_Set(0,0,LCD_WIDTH-1,LCD_HEIGHT-1);//…Ë÷√œ‘ æ∑∂Œß
+	//LCD_WR_DATA(color);
+
+	for(i=0;i<LCD_HEIGHT;i++){													   	 	
+	for(j=0;j<LCD_WIDTH;j++){
+		LCD_WR_DATA(color);
+	}} 	
+
 }
 
 /******************************************************************************

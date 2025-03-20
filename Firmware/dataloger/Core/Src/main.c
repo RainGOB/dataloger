@@ -35,6 +35,7 @@
 #include "app_can.h"
 #include "app_sdio.h"
 #include "app_fatdata.h"
+#include "app_ui.h"
 #include "Variable.h"
 
 #include "stdio.h"
@@ -110,7 +111,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   uint8_t KeyPushCount = 0;
   uint8_t key;
-  uint8_t Display_mode = 0;
+  uint8_t FatfsInitFlag = 0;
+
   
 	//init ws2812b to show simple sigal
 	ws2812_init(1);
@@ -118,27 +120,15 @@ int main(void)
 	
 	//LCD preparation
 	LCD_init();
-    lcd_fill(0,0,LCD_WIDTH,LCD_HEIGHT,0x0000);
-	LCD_ShowString(48,40,(unsigned char *)"receive can message",0xFFFF,0x0000,16,0);
 	
-	//init sd and file system
+    //init sd and file system
 	if(FATFS_Load() != FR_OK){  //fatfs装载sd卡，如果卡中没有文件系统，则格式化
 		ws2812_red(1);
 		SDWrongFlag = 1;
 	}
 	
-	if(FATFS_ReadPara() != FR_OK  | SDWrongFlag == 1){
-		ws2812_red(1);
-		SDWrongFlag = 1;
-	}
-	
-	if(FATFS_CarOpen() != FR_OK | SDWrongFlag == 1) {
-		ws2812_red(1);
-		SDWrongFlag = 1;
-	}
-	
 	//candata
-	canfilter_init();
+	//canfilter_init();            //记得解开
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -148,33 +138,56 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  loop_flag = 1;
+	  FatfsInitFlag = 0;  //重新初始化文件系统
+	  
+	  lcd_clear(0x0000);
+	  LCD_ShowString(10,10,"recorde mode",0x0000,0xFFFF,32,0);
+	  LCD_ShowString(10,40,"master mode",0xFFFF,0x0000,32,0);
+	  LCD_ShowString(10,70,"diagnose mode",0xFFFF,0x0000,32,0);
+	  while(loop_flag){
 	  key = key_scan(0);
-	  
-	  
-	  FATFS_CarWrite();
-	
-	  if(key == KeyLeft){
-		  Display_mode ++;
-		  if(Display_mode >= 3)
-			  Display_mode = 3;
-	  }
-	  if(key == KeyRight){
-		  Display_mode --;
-		  if(Display_mode <= 0)
-			  Display_mode = 0;
-	  }
-	  if(key == KeyPush){
-		  KeyPushCount ++;
-		  if(KeyPushCount >= 3){
-			  FATFS_Carclosefile();
-			  ws2812_blue(1);
-			  printf("SD Save complete");
-			  LCD_ShowString(48,80,(unsigned char *)"send data to sd card",0x0000,0x0000,16,0);
-			  LCD_ShowString(48,100,(unsigned char *)"file close",0xFFFF,0x0000,16,0);
+	  if(!recode_mode_flag){
+		  if(key == KeyLeft){
+			  Display_mode --;
+			  if(Display_mode <= 1)
+				  Display_mode = 1;
+			  start_up_flag = 1;
 		  }
+		  if(key == KeyRight){		 
+			  Display_mode ++;
+			  if(Display_mode >= 3)
+				  Display_mode = 3;
+			  start_up_flag = 1;
+		  }
+		  if(key == KeyPush){
+			  if(Display_mode == 1){
+				  recode_mode_flag = 1;
+				  recorde_mode();
+			  }
+		  }
+		  start_up();
 	  }
-	  
-	  
+	  else if(recode_mode_flag){
+		  if(key == KeyPush){
+			  KeyPushCount ++;
+			  if(KeyPushCount >= 3){
+				  FATFS_Carclosefile();
+				  ws2812_blue(1);
+				  LCD_ShowString(10,120,(unsigned char *)"send data to sd card",0x0000,0x0000,16,0);
+				  LCD_ShowString(10,160,(unsigned char *)"file close",0xFFFF,0x0000,16,0);
+				  //回到主菜单
+				  loop_flag = 0;
+				  recode_mode_flag = 0;
+			  }
+		  }
+		  if(!FatfsInitFlag){
+			  Fatfs_init();
+			  FatfsInitFlag = 1;
+		  }
+		  FATFS_CarWrite();
+	  } 
+	  }
 	  //HAL_Delay(10);
   }
   /* USER CODE END 3 */

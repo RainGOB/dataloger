@@ -36,7 +36,7 @@ void Can2Filter_Config()
 		Error_Handler();
 	}
 	//printf("CAN2 Filter Config Success!\r\n");
-	LCD_ShowString(10,10,(unsigned char *)"can1 OK",0xFFFF,0x0000,16,0);
+	LCD_ShowString(10,40,(unsigned char *)"can1 OK",0xFFFF,0x0000,16,0);
 	//带输出状态
 }
 
@@ -73,7 +73,7 @@ void Can1Filter_Config()
 	}
 	//带输出状态
 	//printf("CAN1 Filter Config Success!\r\n");
-	LCD_ShowString(10,30,(unsigned char *)"can2 OK",0xFFFF,0x0000,16,0);
+	LCD_ShowString(10,60,(unsigned char *)"can2 OK",0xFFFF,0x0000,16,0);
 }
 
 //can初始化

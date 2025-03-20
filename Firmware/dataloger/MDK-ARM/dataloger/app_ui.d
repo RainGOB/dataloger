@@ -1,4 +1,4 @@
-dataloger/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
+dataloger/app_ui.o: ..\APP\app_ui.c ..\APP\app_ui.h ..\Core\Inc\main.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -35,7 +35,7 @@ dataloger/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\Core\Inc\can.h ..\Core\Inc\dma.h ..\FATFS\App\fatfs.h \
+  ..\Core\Inc\Variable.h ..\FATFS\App\fatfs.h \
   ..\Middlewares\Third_Party\FatFs\src\ff.h \
   ..\Middlewares\Third_Party\FatFs\src\integer.h \
   ..\FATFS\Target\ffconf.h ..\FATFS\Target\bsp_driver_sd.h \
@@ -44,9 +44,4 @@ dataloger/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h \
   ..\Middlewares\Third_Party\FatFs\src\diskio.h \
   ..\FATFS\Target\sd_diskio.h ..\FATFS\Target\user_diskio.h \
-  ..\Core\Inc\sdio.h ..\Core\Inc\spi.h ..\Core\Inc\tim.h \
-  ..\Core\Inc\usart.h ..\Core\Inc\gpio.h ..\BSP\bsp_WS2812B.h \
-  ..\BSP\bsp_lcd.h ..\BSP\bsp_key.h ..\APP\app_can.h ..\BSP\bsp_can.h \
-  ..\APP\app_sdio.h ..\APP\app_fatdata.h ..\APP\app_ui.h \
-  ..\Core\Inc\Variable.h D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
+  ..\BSP\bsp_LCD.h ..\Core\Inc\spi.h

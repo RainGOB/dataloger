@@ -1,4 +1,4 @@
-dataloger/app_sdio.o: ..\APP\app_sdio.c ..\BSP\bsp_sdio.h \
+dataloger/app_sdio.o: ..\APP\app_sdio.c ..\APP\app_sdio.h \
   ..\Core\Inc\main.h ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -35,7 +35,8 @@ dataloger/app_sdio.o: ..\APP\app_sdio.c ..\BSP\bsp_sdio.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\FATFS\App\fatfs.h ..\Middlewares\Third_Party\FatFs\src\ff.h \
+  ..\BSP\bsp_sdio.h ..\FATFS\App\fatfs.h \
+  ..\Middlewares\Third_Party\FatFs\src\ff.h \
   ..\Middlewares\Third_Party\FatFs\src\integer.h \
   ..\FATFS\Target\ffconf.h ..\FATFS\Target\bsp_driver_sd.h \
   ..\FATFS\Target\fatfs_platform.h \

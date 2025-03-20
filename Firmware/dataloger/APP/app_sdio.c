@@ -1,3 +1,4 @@
+#include "app_sdio.h"
 #include "bsp_sdio.h"
 #include "fatfs.h"
 #include "Variable.h"
@@ -16,6 +17,17 @@ Bat Vol Cur Soc Soh State AlmLv life\r\n";
 
 TCHAR TitleHead[20] = {"0:LYdata"};
 
+void Fatfs_init(){
+	if(FATFS_ReadPara() != FR_OK  | SDWrongFlag == 1){
+		ws2812_red(1);
+		SDWrongFlag = 1;
+	}
+	
+	if(FATFS_CarOpen() != FR_OK | SDWrongFlag == 1) {
+		ws2812_red(1);
+		SDWrongFlag = 1;
+	}
+}
 
 /*********************** 文件处理 ***********************/
 

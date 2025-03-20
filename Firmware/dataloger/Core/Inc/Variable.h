@@ -89,6 +89,8 @@ extern struct RacingCarData racingCarData;
 
 extern uint16_t *lcd_fb;
 
+extern uint8_t Display_mode;
+
 extern FATFS fs;                       /* FatFs 文件系统对象 */
 extern FIL file;                       /* 文件对象 */
 extern FRESULT f_res;                  /* 文件操作结果 */

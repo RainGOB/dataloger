@@ -1039,11 +1039,6 @@
               <FilePath>..\BSP\bsp_LCD.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_pic.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\BSP\bsp_pic.h</FilePath>
-            </File>
-            <File>
               <FileName>bsp_LCDfont.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\BSP\bsp_LCDfont.h</FilePath>
@@ -1122,6 +1117,16 @@
               <FileName>app_fatdata.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\APP\app_fatdata.h</FilePath>
+            </File>
+            <File>
+              <FileName>app_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\app_ui.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_ui.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\APP\app_ui.h</FilePath>
             </File>
           </Files>
         </Group>

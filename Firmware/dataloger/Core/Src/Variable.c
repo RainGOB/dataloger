@@ -8,6 +8,8 @@ uint16_t MessageCount = 0;
 //display
 uint16_t *lcd_fb;
 
+//key
+uint8_t Display_mode = 0;
 
 //file system
 FATFS fs;                       /* FatFs 文件系统对象 */
