@@ -2,7 +2,7 @@
 
 //can
 struct RacingCarData racingCarData;
-uint8_t sd_data_send_mes = 0;
+uint16_t sd_data_send_mes = 0;
 uint16_t MessageCount = 0;
 
 //display

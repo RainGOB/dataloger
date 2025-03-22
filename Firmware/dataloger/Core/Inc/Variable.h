@@ -82,7 +82,7 @@ struct RacingCarData{
 	
 
 };
-extern uint8_t sd_data_send_mes;
+extern uint16_t sd_data_send_mes;
 extern uint16_t MessageCount;
 
 extern struct RacingCarData racingCarData;

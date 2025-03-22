@@ -43,4 +43,4 @@ dataloger/app_fatdata.o: ..\APP\app_fatdata.c ..\Core\Inc\Variable.h \
   ..\Middlewares\Third_Party\FatFs\src\ff_gen_drv.h \
   ..\Middlewares\Third_Party\FatFs\src\diskio.h \
   ..\FATFS\Target\sd_diskio.h ..\FATFS\Target\user_diskio.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h ..\APP\app_fatdata.h

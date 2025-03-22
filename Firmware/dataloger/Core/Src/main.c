@@ -128,7 +128,7 @@ int main(void)
 	}
 	
 	//candata
-	//canfilter_init();            //记得解开
+	canfilter_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -186,6 +186,7 @@ int main(void)
 			  FatfsInitFlag = 1;
 		  }
 		  FATFS_CarWrite();
+		  LCD_ShowIntNum(48,180,sd_data_send_mes,5,0xFFFF,0x0000,16);
 	  } 
 	  }
 	  //HAL_Delay(10);

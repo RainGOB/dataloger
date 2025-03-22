@@ -88,14 +88,14 @@ int FATFS_CarWrite(){
 	if(SDWrongFlag != 1){
 	  if((sd_data_send_mes & 0xF) == 0xF){
 		DecodeSdData();
-		LCD_ShowString(48,80,(unsigned char *)"send data to sd card",0xFFFF,0x0000,16,0);
+		LCD_ShowString(48,80,(unsigned char *)"send data1 to sd card",0xFFFF,0x0000,16,0);
 		//MessageCount++;
 		if(SDWrongFlag == 0 & SDSendStateflg == 1){
 		printf("write data\r\n");
 		f_res = f_write(&file,CarDataBuffer,sizeof(CarDataBuffer),&fnum);
 		if(f_res == FR_OK){
 			printf("cardata write file success:%d",fnum);
-			sd_data_send_mes &= 0X3F0;
+			sd_data_send_mes &= 0X7F0;
 		}
 		else{
 		    printf("cardata write file fail");
@@ -107,9 +107,9 @@ int FATFS_CarWrite(){
 			printf("there is somthing wrong with FAT");
 		}
 	  }
-	  if((sd_data_send_mes & 0x7F0) == 0x3F0 ){
-		DecodeSdData();
-		LCD_ShowString(48,80,(unsigned char *)"send data to sd card",0xFFFF,0x0000,16,0);
+	  if((sd_data_send_mes & 0x7F0) == 0x7F0 ){
+		DecodeSdData_Power();
+		LCD_ShowString(48,120,(unsigned char *)"send data2 to sd card",0xFFFF,0x0000,16,0);
 		//MessageCount++;
 		if(SDWrongFlag == 0 & SDSendStateflg == 1){
 		printf("write data\r\n");
@@ -127,8 +127,10 @@ int FATFS_CarWrite(){
 		else{
 			printf("there is somthing wrong with FAT");
 		}
+		
 	  }
 }
+	return f_res;
 }
 
 int FATFS_Load(){

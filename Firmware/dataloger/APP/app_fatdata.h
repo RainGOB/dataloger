@@ -12,4 +12,6 @@ void Car_strcat(char * dest , const char * src);
 
 void DecodeSdData();
 void DecodeSdData_Power();
+void DecodeSdData1_Power();
+void DecodeSdData2_Power();
 #endif

@@ -1,5 +1,6 @@
 #include "Variable.h"
 #include "string.h"
+#include "app_fatdata.h"
 
 /*  **********************    数据转换    ***********************/
 //uint8_t2string
@@ -9,7 +10,8 @@ void uint8_t2string(uint8_t num,char * str){
 		str[i++] = num/100 + 48;
 	if(num >= 10)
 		str[i++] = num/10%10 + 48;
-	str[i++] = num%10 + 48;
+	str[i++] = num%10 + 48;\
+	str[i++] = ' ';
 	str[i] = '\0';
 
 }
@@ -28,6 +30,7 @@ void int8_t2string(int8_t num , char* str){
 	if(num>=10)
 	str[i++] = num/10%10 + 48;
 	str[i++] = num%10 + 48;
+	str[i++] = ' ';
 	str[i] = '\0';
 	
 }
@@ -45,6 +48,7 @@ void uint16_t2string(uint16_t num , char* str){
 	if(num>=10)
 	str[i++] = num/10%10 + 48;
 	str[i++] = num%10 + 48;
+	str[i++] = ' ';
 	str[i] = '\0';
 
 }
@@ -70,6 +74,7 @@ void float2string(float num,char* str){
 	str[i++] = (int)(num * 10) %10 +48;
 	str[i++] = (int)(num * 100) %10 +48;
 	
+	str[i++] = ' ';
 	str[i] = '\0';
 	
 }
@@ -125,6 +130,93 @@ void DecodeSdData(){
 	Car_strcat(CarDataBuffer,"\r\n");
 }
 
+void DecodeSdData1_Power(){
+	memset(CarDataBuffer,0x00,sizeof(CarDataBuffer)); 
+	
+	Car_strcat(CarDataBuffer,"1.1:");
+	uint16_t2string(racingCarData.l_motor_target_torque,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.l_motor_target_rpm,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.l_target_controlmodeorder,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.l_gearstage,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.dccur,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.r_motor_target_torque,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.r_motor_target_rpm,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.r_target_controlmodeorder,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.r_gearstage,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.l_motor_torque,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.l_motor_rpm,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.l_controlmodeorder,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.lmcuinfo1,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.lmcuinfo2,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.r_motor_torque,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint16_t2string(racingCarData.r_motor_rpm,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.r_controlmodeorder,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.rmcuinfo1,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.rmcuinfo2,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	int8_t2string(racingCarData.l_mcu_temp,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	int8_t2string(racingCarData.l_motor_temp,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.lmcu_dcvol,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.lmcu_dccur,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.lmcu_accur,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	Car_strcat(CarDataBuffer,"\r\n");
+}
+
+void DecodeSdData2_Power(){
+	memset(CarDataBuffer,0x00,sizeof(CarDataBuffer)); 
+	
+	Car_strcat(CarDataBuffer,"1.2:");
+	int8_t2string(racingCarData.r_mcu_temp,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	int8_t2string(racingCarData.r_motor_temp,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.rmcu_dcvol,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.rmcu_dccur,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.rmcu_accur,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.BatVoltage,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	float2string(racingCarData.BatCurrent,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.BatSoc,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.BatSoh,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.BatState,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.BatAlmLv,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	uint8_t2string(racingCarData.Batlife,buffer);
+	Car_strcat(CarDataBuffer,buffer);
+	Car_strcat(CarDataBuffer,"\r\n");
+}
+
+
 void DecodeSdData_Power(){
 	memset(CarDataBuffer,0x00,sizeof(CarDataBuffer)); 
 	
@@ -177,6 +269,8 @@ void DecodeSdData_Power(){
 	Car_strcat(CarDataBuffer,buffer);
 	float2string(racingCarData.lmcu_accur,buffer);
 	Car_strcat(CarDataBuffer,buffer);
+	
+	//分隔开
 	int8_t2string(racingCarData.r_mcu_temp,buffer);
 	Car_strcat(CarDataBuffer,buffer);
 	int8_t2string(racingCarData.r_motor_temp,buffer);
@@ -201,4 +295,6 @@ void DecodeSdData_Power(){
 	Car_strcat(CarDataBuffer,buffer);
 	uint8_t2string(racingCarData.Batlife,buffer);
 	Car_strcat(CarDataBuffer,buffer);
+	Car_strcat(CarDataBuffer,"\r\n");
 }
+
